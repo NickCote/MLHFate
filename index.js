@@ -5,7 +5,6 @@ let heightestValue;
 let amountOfChoices = 0;
 let people = [];
 let options = [];
-let numOfPeople = 5;
 //orderPeople();
 
 function setAllRoles(){
@@ -21,32 +20,33 @@ function getRoll(){
 function orderPeople(){
   let tempHighestValue; //holder for the highest value
 
-  for(let i = 0; i < numOfPeople; i++){ //Picks are largest, then second largest, then etc
+  for(let i = 0; i < people.length; i++){ //Picks are largest, then second largest, then etc
     tempHighestValue = 0; //highest value in the remaining set
 
-    for(let j = 0; j < numOfpeople; j++){ //loops through remaining set
-      if(people[heightestValue].roll > tempHighestValue){ //finds largest value in remaining set
-        tempHighestValue = people[j].roll;
+    for(let j = 0; j < people.length; j++){ //loops through remaining set
+      if(people[j].getRoll() > tempHighestValue){ //finds largest value in remaining set
+        tempHighestValue = people[j].getRoll();
         heightestValue = j; // heightValue = person with the highest value in the remaining set
       }
     }
 
-    orderedPeople[i] = people[heightestValue].roll; //sets highest person in the remaining set and orders them
-    people[heightestValue].roll = -1; //removes highest person from the remaining set
+    orderedPeople[i] = people[heightestValue]; //sets highest person in the remaining set and orders them
+    people[heightestValue].setRoll(-1); //removes highest person from the remaining set
   }
 }
 
 function assignOption(){
-  for(var i = 0; i < people.length; i++){
-    for(var j = 0; j < options.length; j++){
-      if(option[j].available == true){
-        orderedPeople[i].result = option[j].name;
-        option[j].available = false;
+  for(var i = 0; i < orderedPeople.length; i++){
+    for(var j = 0; j < orderedPeople[i].preferedChoices.length; j++){
+      if(orderedPeople[i].preferedChoices[j].available == true){
+        orderedPeople[i].result = orderedPeople[i].preferedChoices[j].type;
+        orderedPeople[i].preferedChoices[j].available = false;
         break;
       }
     }
   }
-
+  console.log(orderedPeople);
+}
 
 //create the forms for persons input
 function inputPerson()
@@ -105,7 +105,7 @@ function AddChoice()
       iOption = null;
     }
     else {
-      let opt = new Option(choiceNameInput.value, false);
+      let opt = new Option(choiceNameInput.value, true);
       options.push(opt);
       console.log(options);
     }
@@ -158,4 +158,11 @@ function createPerson(form)
      }
      people.push(currPerson);
      return;
+}
+
+function go()
+{
+  setAllRoles();
+  orderPeople();
+  assignOption();
 }

@@ -3,11 +3,11 @@ class Option
   constructor(type, taken)
   {
     this.type = type;
-    this.taken = taken;
+    this.available = taken;
   }
 
-  setTaken(isTaken)
+  setTaken(notTaken)
   {
-    this.taken = isTaken;
+    this.available = notTaken;
   }
 }

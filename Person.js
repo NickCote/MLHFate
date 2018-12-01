@@ -22,7 +22,12 @@ class Person{
 
   setRoll(roll)
   {
+    this.actualRoll = this.roll;
     this.roll = roll;
+  }
+  getRoll()
+  {
+    return this.roll;
   }
 
 };
