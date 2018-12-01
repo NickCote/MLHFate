@@ -1,6 +1,13 @@
-class Option{
-  constructor(name, available){
-    this.name = name;
-    this.available = available;
+class Option
+{
+  constructor(type, taken)
+  {
+    this.type = type;
+    this.taken = taken;
+  }
+
+  setTaken(isTaken)
+  {
+    this.taken = isTaken;
   }
 }
