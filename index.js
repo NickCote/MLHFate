@@ -64,7 +64,6 @@ function assignOption(){
       }
     }
   }
-<<<<<<< HEAD
   console.log(orderedPeople);
 }
 
@@ -195,6 +194,4 @@ function go()
   orderPeople();
   assignOption();
   outputResults();
-=======
->>>>>>> a0a8f0b028a2e1cb85ab11d7639bdbab25e700e2
 }
