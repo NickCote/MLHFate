@@ -59,7 +59,7 @@ function inputPerson()
   personInput.appendChild(nameInput);
   nameInput.setAttribute("placeholder", "Enter your name");
 
-  for(let i = 0; i < 5; i++)
+  for(let i = 0; i < options.length; i++)
   {
     let choicePreference = document.createElement("INPUT");
     personInput.appendChild(choicePreference);
@@ -120,18 +120,14 @@ function AddChoice()
         iOption = i;
       }
     }
-    //iOption = null;
 
   };
-
 
   //section on the page where display the forms
   let location = document.getElementById("choiceForms");
   location.appendChild(choiceInput);
 
   console.log(choiceNameInput.value);
-
-
 
   return;
 }
@@ -160,9 +156,23 @@ function createPerson(form)
      return;
 }
 
+function outputResults()
+{
+  let resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
+
+  for(let i = 0; i < orderedPeople.length; i++)
+  {
+    let div = document.createElement("DIV");
+    div.innerText = orderedPeople[i].name + ": " + orderedPeople[i].result + " Roll: " + orderedPeople[i].actualRoll;
+    resultsDiv.appendChild(div);
+  }
+}
+
 function go()
 {
   setAllRoles();
   orderPeople();
   assignOption();
+  outputResults();
 }
